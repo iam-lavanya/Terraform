@@ -27,3 +27,8 @@ variable "securitygrp_id" {
     description = "Security group for attaching to EC2 instance" 
     default     = "sg-09d434ff9fb48519a" 
 }
+variable "availability_zone" {
+  description = "Availability zone for creating EBS volume"
+  default = "us-east-1a"
+
+}

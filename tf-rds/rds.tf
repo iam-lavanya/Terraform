@@ -1,13 +1,13 @@
 provider "aws" {
-  region = "us-east-1" # Change this to your desired region
+  region = var.region_name # Change this to your desired region
 }
 # The RDS instance resource requires an ARN. Look up the ARN of the KMS key.
-data "aws_kms_key" "by_id" {
-  key_id = "1bcd81ac-93cf-4996-be8e-05da6664a39e" # KMS key
+data "aws_kms_key" "kms_key" {
+  key_id = var.kms # KMS key
 }
 
 resource "aws_db_instance" "default" {
-  kms_key_id            = data.aws_kms_key.by_id.arn
+  kms_key_id            = data.aws_kms_key.kms.arn
   identifier            = "psk1"
   allocated_storage    = 20
   storage_type          = "gp2"
@@ -22,13 +22,11 @@ resource "aws_db_instance" "default" {
 #   parameter_group_name = "default:mysql-8-0"
 #   custom_iam_instance_profile = "AWSRDSCustomSQLServerInstanceRole"
   
-  vpc_security_group_ids = ["sg-02f0ea7e6c53031b3"]
-
-
+  vpc_security_group_ids = [var.vpc_security_group_ids]
 
 
   multi_az              = false
-  availability_zone     = "us-east-1a"
+  availability_zone     = "var.availability_zone"
 }
 
 

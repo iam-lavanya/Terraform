@@ -5,7 +5,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties: 
       GroupDescription: A Security Group for Demo-EC2
-      GroupName: Batch16 SG
+      GroupName:  SG_ssh_https
       VpcId: vpc-09b77ec6cfd8f4129
       SecurityGroupIngress:
         - IpProtocol: tcp
@@ -18,5 +18,5 @@ Resources:
           ToPort: -1
           CidrIp: 0.0.0.0/0
       Tags:
-           - Value: Batch-16 Security Group
+           - Value: SG1_SSH_HTTPS
              Key: Name

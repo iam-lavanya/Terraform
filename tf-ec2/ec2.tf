@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 #Create EC2 instance for testing purpose
-resource "aws_instance" "myFirstInstance" {
+resource "aws_instance" "ec2" {
   subnet_id = var.subnet_id
   ami     = var.ami_id
   key_name = var.key_name
@@ -17,12 +17,12 @@ resource "aws_instance" "myFirstInstance" {
 
 resource "aws_volume_attachment" "ebs_att" {
   device_name = "/dev/sdf"
-  volume_id   = aws_ebs_volume.example.id
-  instance_id = aws_instance.myFirstInstance.id
+  volume_id   = aws_ebs_volume.EBS_ec2.id
+  instance_id = aws_instance.ec2.id
 }
 
-resource "aws_ebs_volume" "example" {
-  availability_zone = "us-east-1a"
+resource "aws_ebs_volume" "EBS_ec2" {
+  availability_zone = "var.availability_zone"
   size              = 1
     tags = {
     Name = "HelloEBS"

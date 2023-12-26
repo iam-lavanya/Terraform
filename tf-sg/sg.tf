@@ -1,12 +1,12 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.region_name
 }
 
 #Create security group with firewall rules
-resource "aws_security_group" "batch16_security_grp" {
-  name        = "Batch-16 Security Group"
+resource "aws_security_group" "SG1_SSH_HTTPS" {
+  name        = "SG1_SSH_HTTPS"
   description = "security group for allowing SSH traffic to EC2 instances"
-  vpc_id = "vpc-09b77ec6cfd8f4129"
+  vpc_id = var.vpc_id
 
  ingress {
     from_port   = 443
@@ -31,13 +31,13 @@ resource "aws_security_group" "batch16_security_grp" {
   }
 
   tags= {
-    Name = "Batch-16 Security Group"
+    Name = "SG1_SSH_HTTPS"
   }
 }
-resource "aws_security_group" "batch17_security_grp" {
-  name        = "Batch-17 Security Group"
+resource "aws_security_group" "SG2_SSH_HTTPS" {
+  name        = "SG2_SSH_HTTPS"
   description = "security group for allowing SSH traffic to EC2 instances"
-  vpc_id = "vpc-09b77ec6cfd8f4129"
+  vpc_id = var.vpc_id
 
  ingress {
     from_port   = 443
@@ -62,7 +62,7 @@ resource "aws_security_group" "batch17_security_grp" {
   }
 
   tags= {
-    Name = "Batch-17 Security Group"
+    Name = "SG2_SSH_HTTPS"
   }
 
 }
