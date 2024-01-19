@@ -1,9 +1,9 @@
 provider "aws" {
-    region = "us-east-1"
+    region = var.region_name
   
 }
 
 module "s3_module" {
-    source = "C:/Users/lchekuri/OneDrive - DXC Production/Documents/AWS/Terraform Examples/terraform/module-example/modules/tf-ec2"
+    source = "./modules/module/tf-s3"
   
 }
