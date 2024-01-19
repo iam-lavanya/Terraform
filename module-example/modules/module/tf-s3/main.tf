@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "s3-example" {
-  bucket = "module-s3-12345"
+  bucket = var.bucket_name
 }
 
 resource "aws_s3_bucket_versioning" "versioning_s3" {
